@@ -1,0 +1,62 @@
+[
+  {
+    "id": "7ad311c1-4443-4da3-9887-62991ded2a2d",
+    "title": "Producto Ejemplo",
+    "description": "Esta es una descripción de ejemplo para el producto.",
+    "code": "ABC123",
+    "price": 99.99,
+    "status": true,
+    "stock": 50,
+    "category": "Electrónica",
+    "thumbnails": [
+      "/ruta/imagen1.jpg",
+      "/ruta/imagen2.jpg",
+      "/ruta/imagen3.jpg"
+    ]
+  },
+  {
+    "id": "04888619-5c72-4ea8-a581-8cf194534f72",
+    "title": "Producto Ejemplo",
+    "description": "Esta es una descripción de ejemplo para el producto.",
+    "code": "ABC123",
+    "price": 99.99,
+    "status": true,
+    "stock": 50,
+    "category": "Electrónica",
+    "thumbnails": [
+      "/ruta/imagen1.jpg",
+      "/ruta/imagen2.jpg",
+      "/ruta/imagen3.jpg"
+    ]
+  },
+  {
+    "id": "4a1eb783-d237-4f7e-a220-93e77ce75e2f",
+    "title": "Producto Ejemplo",
+    "description": "Esta es una descripción de ejemplo para el producto.",
+    "code": "ABC123",
+    "price": 99.99,
+    "status": true,
+    "stock": 50,
+    "category": "Electrónica",
+    "thumbnails": [
+      "/ruta/imagen1.jpg",
+      "/ruta/imagen2.jpg",
+      "/ruta/imagen3.jpg"
+    ]
+  },
+  {
+    "id": "6d1ac608-f0e6-4af4-82fc-4679341f800c",
+    "title": "Producto Ejemplo",
+    "description": "Esta es una descripción de ejemplo para el producto.",
+    "code": "ABC123",
+    "price": 99.99,
+    "status": true,
+    "stock": 50,
+    "category": "Electrónica",
+    "thumbnails": [
+      "/ruta/imagen1.jpg",
+      "/ruta/imagen2.jpg",
+      "/ruta/imagen3.jpg"
+    ]
+  }
+]

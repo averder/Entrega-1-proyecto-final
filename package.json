@@ -1,0 +1,18 @@
+{
+  "name": "entrega-1-proyecto-final",
+  "version": "1.0.0",
+  "description": "Entrega1-proyecto-final",
+  "main": "./src/app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon ."
+  },
+  "author": "verde",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemon": "^3.1.0",
+    "uuid": "^9.0.1"
+  }
+}
