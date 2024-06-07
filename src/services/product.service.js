@@ -42,7 +42,7 @@ const updateProduct = async (pId, product) => {
 const deleteProduct = async (pId) => {
   try {
     const dao = getDAOFromConfig().product;
-    return await productService.deleteProduct(pId);
+    return await dao.deleteProduct(pId);
   } catch (error) {
     console.log(error);
     return null;

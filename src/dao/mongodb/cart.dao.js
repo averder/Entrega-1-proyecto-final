@@ -16,6 +16,7 @@ const getCartById = async (id) => {
   try {
     return await CartModel.findById(id);
   } catch (error) {
+    console.log(error);
     throw new Error(error);
   }
 };
@@ -32,6 +33,14 @@ const getAllCarts = async () => {
 const createCart = async (obj) => {
   try {
     return await CartModel.create(obj);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const updateQuantity = async (id, obj) => {
+  try {
+    return await CartModel.findByIdAndUpdate(id, obj);
   } catch (error) {
     throw new Error(error);
   }
@@ -61,4 +70,5 @@ export const CartMongoDAO = {
   createCart,
   updateCart,
   deleteCart,
+  updateQuantity,
 };

@@ -47,7 +47,8 @@ const removeAllFromCart = async (req, res) => {
 const getCartById = async (req, res) => {
   try {
     const { idCart } = req.params;
-    return await cartService.getCartById(idCart);
+    const cart = await cartService.getCartById(idCart);
+    response(res, HttpStatus.CREATED, { cart });
   } catch (error) {
     response(res, HttpStatus.INTERNAL_SERVER_ERROR, error.message);
   }
@@ -57,6 +58,17 @@ const getAllCarts = async (req, res) => {
   try {
     const carts = await cartService.getAllCarts();
     response(res, HttpStatus.CREATED, { carts }, false);
+  } catch (error) {
+    response(res, HttpStatus.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+const updateProducts = async (req, res) => {
+  try {
+    const { idCart } = req.params;
+    const productsUpdate = req.body;
+    const cart = await cartService.updateProducts(idCart, productsUpdate);
+    response(res, HttpStatus.CREATED, { cart });
   } catch (error) {
     response(res, HttpStatus.INTERNAL_SERVER_ERROR, error.message);
   }
@@ -81,4 +93,5 @@ export {
   removeProductFromCart,
   removeAllFromCart,
   updateQuantity,
+  updateProducts,
 };

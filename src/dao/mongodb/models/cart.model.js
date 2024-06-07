@@ -3,6 +3,7 @@ import { Schema, model } from "mongoose";
 const CartSchema = new Schema({
   items: [
     {
+      _id: false,
       product: {
         type: Schema.Types.ObjectId,
         ref: "products",
@@ -14,6 +15,14 @@ const CartSchema = new Schema({
       },
     },
   ],
+});
+
+CartSchema.pre("find", function () {
+  this.populate("items.product");
+});
+
+CartSchema.pre("findOne", function () {
+  this.populate("items.product");
 });
 
 // Export the Cart model

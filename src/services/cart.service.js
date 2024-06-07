@@ -24,10 +24,10 @@ const addProductToCart = async (idCart, idProd) => {
 
     const auxCart = cart;
 
-    console.log(auxCart.items.filter((ci) => ci.product.toString() === idProd));
     let cartItem = (auxCart.items.filter(
-      (ci) => ci.product.toString() === idProd
+      (ci) => ci.product._id.toString() === idProd
     ) || [null])[0];
+
     if (!cartItem) {
       cartItem = { product: idProd, quantity: 1 };
       auxCart.items = [...auxCart.items, cartItem];
@@ -91,6 +91,20 @@ const getAllCarts = async () => {
   }
 };
 
+const updateProducts = async (idCart, products) => {
+  try {
+    let cart = await dao.getCartById(idCart);
+    if (!cart) {
+      console.log("Error: The cart not exist");
+      return null;
+    }
+    await dao.updateCart(cart._id, products);
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
 const updateQuantity = async (idCart, idProd, quantity) => {
   try {
     const cart = await dao.getCartById(idCart);
@@ -102,7 +116,7 @@ const updateQuantity = async (idCart, idProd, quantity) => {
     const auxCart = cart;
 
     let cartItem = (auxCart.items.filter(
-      (ci) => ci.product.toString() === idProd
+      (ci) => ci.product._id.toString() === idProd
     ) || [null])[0];
 
     if (cartItem) {
@@ -124,4 +138,5 @@ export const cartService = {
   removeProductFromCart,
   removeAllFromCart,
   updateQuantity,
+  updateProducts,
 };

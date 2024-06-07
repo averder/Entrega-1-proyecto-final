@@ -40,7 +40,7 @@ export default class CartsManager {
       console.log("entro en create carts: " + carts);
       const newCart = {
         id: uuidv4(),
-        items: [],
+        products: [],
       };
 
       carts.push(newCart);
@@ -59,15 +59,15 @@ export default class CartsManager {
         return;
       }
 
-      console.log("cart items: " + cart);
+      console.log("cart products: " + cart);
 
       console.log(JSON.stringify(cart));
-      let items = cart.items.filter((item) => item.product.id === idProd);
-      if (items.length === 0) {
-        items = [{ product: { id: idProd }, quantity: 0 }];
-        cart.items.push(items[0]);
+      let products = cart.products.filter((item) => item.product.id === idProd);
+      if (products.length === 0) {
+        products = [{ product: { id: idProd }, quantity: 0 }];
+        cart.products.push(products[0]);
       }
-      items[0].quantity++;
+      products[0].quantity++;
 
       let carts = await this.getCarts();
       carts = carts.map((c) => {
