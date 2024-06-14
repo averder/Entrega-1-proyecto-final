@@ -4,7 +4,6 @@ const dao = getDAOFromConfig().cart;
 
 const createCart = async () => {
   try {
-    console.log(dao);
     return await dao.createCart({
       items: [],
     });

@@ -5,6 +5,7 @@ const HttpStatus = {
   CREATED: 201,
   FORBIDDEN: 403,
   BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
 };
 
 export { HttpStatus };

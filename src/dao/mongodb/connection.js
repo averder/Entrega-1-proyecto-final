@@ -1,11 +1,17 @@
 import mongoose from "mongoose";
 import "dotenv/config";
+import { buildConnString } from "../helpers.js";
 
-const MONGO_URL =
-  process.env.MONGO_URL ||
-  "mongodb+srv://averder:1234@cluster0.6gnudsr.mongodb.net/coderhouse?retryWrites=true&w=majority&appName=Cluster0";
+const MONGO_URL = buildConnString(
+  "mongodb+srv",
+  process.env.DB_USER,
+  process.env.DB_PWD,
+  process.env.DB_URL,
+  process.env.DB_DBNAME,
+  process.env.DB_ARGS
+);
 
-export const mongoInit = async () => {
+const mongoInit = async () => {
   try {
     mongoose.set("strictQuery", false);
     await mongoose.connect(MONGO_URL);
@@ -14,3 +20,5 @@ export const mongoInit = async () => {
     console.log(error);
   }
 };
+
+export { MONGO_URL, mongoInit };

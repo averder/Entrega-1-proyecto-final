@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista de Productos</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+    <header>
+        <h1>Bienvenido</h1>
+        <div id="user-info">
+            <p>Nombre: {{session.profile.name}}</p>
+            <p>Email: {{session.profile.email}}</p>
+            <p>Rol: {{session.profile.role}}</p>
+        </div>
+        <form method="POST" action="/api/users/logout">
+            <button id="logout-button">Logout</button>
+        </form>
+    </header>
+</body>
+</html>
