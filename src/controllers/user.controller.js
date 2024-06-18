@@ -8,8 +8,6 @@ export const login = async (req, res) => {
     const { email, password } = req.body;
     const user = await userService.login(email, password);
     if (!user) response(res, HttpStatus.UNAUTHORIZED, user, false);
-    //res.status(401).json({ msg: "No estas autorizado" });
-    //res.redirect('/error-login)
     else {
       req.session.profile = {
         email,
@@ -17,7 +15,6 @@ export const login = async (req, res) => {
         role: user.role,
       };
       req.session.email = email;
-
       res.redirect("/products");
     }
   } catch (error) {
@@ -27,25 +24,17 @@ export const login = async (req, res) => {
 
 export const register = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    let user = null;
-    if (email === "admin@gmail.com" && password === "admin1234") {
-      user = await userService.register({
-        ...req.body,
-        role: "admin",
-      });
-    } else {
-      user = await userService.register(req.body);
-      console.log(user);
-    }
+    const user = await userService.register(req.body);
     if (!user) {
       response(res, HttpStatus.UNAUTHORIZED, user, false);
     } else {
+      console.log(user);
       res.redirect("/products");
       return;
     }
   } catch (error) {
     res.redirect("/register");
+    return;
   }
 };
 
