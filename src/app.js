@@ -9,6 +9,9 @@ import handlebars from "express-handlebars";
 import { config } from "./config.js";
 import { __dirname } from "./utils.js";
 import cookieParser from "cookie-parser";
+import passport from "passport";
+import "./passport/local-strategy.js";
+import "./passport/github-strategy.js";
 
 const app = express();
 const conf = await config();
@@ -18,6 +21,12 @@ app.use(cookieParser());
 
 app.use(session(conf.storeConfig));
 //app.use(morgan("dev"));
+
+/* ------------------------------------ - ----------------------------------- */
+//! ANTES DE LAS RUTAS
+app.use(passport.initialize());
+app.use(passport.session());
+/* ------------------------------------ - ----------------------------------- */
 
 app.engine("handlebars", handlebars.engine());
 app.set("views", `${__dirname}/views`);

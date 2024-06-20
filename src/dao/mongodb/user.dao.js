@@ -11,9 +11,26 @@ const register = async (user) => {
   }
 };
 
-const login = async (email, password) => {
+const login = async (email) => {
   try {
-    return await UserModel.findOne({ email, password }); //null || user
+    return await UserModel.findOne({ email }); //null || user
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const getById = async (id) => {
+  try {
+    return await UserModel.findById(id);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const getByEmail = async (email) => {
+  console.log(email);
+  try {
+    return await UserModel.findOne({ email });
   } catch (error) {
     throw new Error(error);
   }
@@ -22,4 +39,6 @@ const login = async (email, password) => {
 export const UserMongoDAO = {
   register,
   login,
+  getByEmail,
+  getById,
 };

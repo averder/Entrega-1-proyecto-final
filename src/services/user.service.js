@@ -2,7 +2,7 @@ import { getDAOFromConfig } from "../dao/gateway.js";
 const dao = getDAOFromConfig().user;
 import { createHash, isValidPassword } from "../utils.js";
 
-export const register = async (user) => {
+const register = async (user) => {
   try {
     const { email, password } = user;
     let responseUser = "";
@@ -28,15 +28,42 @@ export const register = async (user) => {
   }
 };
 
-const login = async (email, password) => {
+// const login = async (email, password) => {
+//   try {
+//     const user = await dao.login(email); //null || user
+//     if (!isValidPassword(password, user)) {
+//       return null;
+//     }
+//     return user;
+//   } catch (error) {
+//     throw new Error(error);
+//   }
+// };
+
+const login = async (user) => {
   try {
-    console.log(email);
-    console.log(password);
-    const user = await dao.login(email, password); //null || user
-    if (!isValidPassword(password, user)) {
-      return null;
-    }
-    return user;
+    const { email, password } = user;
+    const userExist = await getUserByEmail(email);
+    if (!userExist) return null;
+    const passValid = isValidPassword(password, userExist);
+    if (!passValid) return null;
+    return userExist;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const getUserByEmail = async (email) => {
+  try {
+    return await dao.getByEmail(email);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const getUserById = async (id) => {
+  try {
+    return await dao.getById(id);
   } catch (error) {
     throw new Error(error);
   }
@@ -45,4 +72,6 @@ const login = async (email, password) => {
 export const userService = {
   register,
   login,
+  getUserByEmail,
+  getUserById,
 };
