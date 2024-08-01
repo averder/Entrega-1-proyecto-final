@@ -21,14 +21,13 @@ const login = async (email) => {
 
 const getById = async (id) => {
   try {
-    return await UserModel.findById(id);
+    return await UserModel.findById(id).populate("cart");
   } catch (error) {
     throw new Error(error);
   }
 };
 
 const getByEmail = async (email) => {
-  console.log(email);
   try {
     return await UserModel.findOne({ email });
   } catch (error) {

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { getAllProducts } from "../services/product.service.js";
-import { infoSession } from "../controllers/user.controller.js";
+//import { getAllProducts } from "../services/product.service.js";
+//import { infoSession } from "../controllers/user.controller.js";
 
 const router = Router();
 
@@ -19,7 +19,6 @@ router.get("/register", (req, res) => {
 router.get("/products", async (req, res) => {
   console.log(req.session);
   res.render("products", {
-    products: (await getAllProducts()).docs,
     session: {
       profile: req.session.profile,
       sessionId: req.sessionID,

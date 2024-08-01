@@ -1,58 +1,61 @@
 import { getDAOFromConfig } from "../dao/gateway.js";
+import Services from "./class.services.js";
 
-const getProductById = async (pId) => {
-  try {
+export default class ProductService extends Services {
+  constructor() {
     const dao = getDAOFromConfig().product;
-    return await dao.getProductById(pId);
-  } catch (error) {
-    console.log(error);
-    return null;
+    super(dao);
+    this.dao = dao;
   }
-};
 
-export const getAllProducts = async (page, limit, query, sort, available) => {
-  try {
-    const dao = getDAOFromConfig().product;
-    return await dao.getAllProducts(page, limit, query, sort, available);
-  } catch (error) {
-    console.log(error);
-  }
-};
+  getAllProducts = async (page, limit, query, sort, available) => {
+    try {
+      return await this.dao.getAllProducts(page, limit, query, sort, available);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-const createProduct = async (product) => {
-  try {
-    const dao = getDAOFromConfig().product;
-    return await dao.createProduct(product);
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-};
+  createProduct = async (product) => {
+    try {
+      return await this.dao.createProduct(product);
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
 
-const updateProduct = async (pId, product) => {
-  try {
-    const dao = getDAOFromConfig().product;
-    return await dao.updateProduct(pId, product);
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-};
+  updateProduct = async (pId, product) => {
+    try {
+      return await this.dao.updateProduct(pId, product);
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
 
-const deleteProduct = async (pId) => {
-  try {
-    const dao = getDAOFromConfig().product;
-    return await dao.deleteProduct(pId);
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-};
+  updateStock = async (idProd, quantityToAdd) => {
+    try {
+      const product = await this.dao.getById(idProd);
+      if (!product) {
+        console.log("Error: The product not exist");
+        return null;
+      }
 
-export const productService = {
-  getProductById,
-  createProduct,
-  updateProduct,
-  deleteProduct,
-  getAllProducts,
-};
+      product.stock += quantityToAdd;
+      await this.updateProduct(idProd, product);
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  deleteProduct = async (pId) => {
+    try {
+      return await this.dao.deleteProduct(pId);
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+}

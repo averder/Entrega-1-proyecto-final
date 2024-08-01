@@ -1,6 +1,6 @@
 import { ProductModel } from "./models/product.model.js";
 
-const getProductById = async (id) => {
+const getById = async (id) => {
   try {
     return await ProductModel.findById(id);
   } catch (error) {
@@ -59,7 +59,7 @@ const deleteProduct = async (id) => {
 };
 
 export const ProductMongoDAO = {
-  getProductById,
+  getById,
   getAllProducts,
   createProduct,
   updateProduct,

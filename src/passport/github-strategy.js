@@ -1,7 +1,9 @@
-import { userService } from "../services/user.service.js";
+import UserService from "../services/user.service.js";
 import { Strategy as GithubStrategy } from "passport-github2";
 import passport from "passport";
 import "dotenv/config";
+
+const userService = new UserService();
 
 const strategyConfig = {
   clientID: process.env.CLIENT_ID,

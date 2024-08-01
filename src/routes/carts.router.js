@@ -1,21 +1,22 @@
 import { Router } from "express";
-import * as controller from "../controllers/cart.controller.js";
+import CartController from "../controllers/cart.controller.js";
+import { isAuth } from "../middleware/isAuth.js";
 const router = Router();
 
-router.get("/", controller.getAllCarts);
+router.get("/", CartController.getAllCarts);
 
-router.get("/:idCart", controller.getCartById);
+router.get("/:idCart", CartController.getCartById);
 
-router.post("/", controller.createCart);
+router.post("/", CartController.createCart);
 
-router.delete("/:idCart", controller.removeAllFromCart);
+router.delete("/:idCart", CartController.removeAllFromCart);
 
-router.post("/:idCart/product/:idProd", controller.addProductToCart);
+router.post("/product/:idProd", [isAuth], CartController.addProductToCart);
 
-router.delete("/:idCart/product/:idProd", controller.removeProductFromCart);
+router.delete("/:idCart/product/:idProd", CartController.removeProductFromCart);
 
-router.put("/:idCart/product/:idProd", controller.updateQuantity);
+router.put("/:idCart/product/:idProd", CartController.updateQuantity);
 
-router.put("/:idCart", controller.updateProducts);
+router.put("/:idCart", CartController.updateProducts);
 
 export default router;

@@ -3,6 +3,8 @@ import session from "express-session";
 import productRouter from "./routes/products.router.js";
 import cartsRouter from "./routes/carts.router.js";
 import userRouter from "./routes/user.router.js";
+import ticketRouter from "./routes/ticket.router.js";
+import emailRouter from "./routes/email.routes.js";
 import viewsRouter from "./routes/views.router.js";
 import { getDAOFromConfig } from "./dao/gateway.js";
 import handlebars from "express-handlebars";
@@ -34,6 +36,8 @@ app.set("view engine", "handlebars");
 
 app.use("/api/products", productRouter);
 app.use("/api/carts", cartsRouter);
+app.use("/api/ticket", ticketRouter);
+app.use("/api/email", emailRouter);
 
 app.use("/api/users", userRouter);
 app.use("/", viewsRouter);

@@ -1,16 +1,26 @@
 import { Router } from "express";
 const router = Router();
 import { productsValidator } from "../middleware/productsValidator.js";
-import { controller } from "../controllers/product.controller.js";
+import ProductController from "../controllers/product.controller.js";
+import { checkAdmin } from "../middleware/checkAdmin.js";
+import { isAuth } from "../middleware/isAuth.js";
 
-router.get("/", controller.getAllProducts);
+router.get("/", isAuth, ProductController.getAllProducts);
 
-router.get("/:pId", controller.getProductById);
+router.get("/:pId", isAuth, ProductController.getById);
 
-router.post("/", [productsValidator], controller.createProduct);
+router.post(
+  "/",
+  [productsValidator, isAuth, checkAdmin],
+  ProductController.createProduct
+);
 
-router.put("/:pId", controller.updateProduct);
+router.put("/:pId", [isAuth, checkAdmin], ProductController.updateProduct);
 
-router.delete("/:idProduct", controller.deleteProduct);
+router.delete(
+  "/:idProduct",
+  [isAuth, checkAdmin],
+  ProductController.deleteProduct
+);
 
 export default router;
