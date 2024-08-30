@@ -14,15 +14,22 @@ import cookieParser from "cookie-parser";
 import passport from "passport";
 import "./passport/local-strategy.js";
 import "./passport/github-strategy.js";
+import morgan from "morgan";
+import swaggerUI from "swagger-ui-express";
+import swaggerJSDoc from "swagger-jsdoc";
+import { info } from "./docs/info.js";
 
 const app = express();
+const specs = swaggerJSDoc(info);
 const conf = await config();
+
+app.use("/docs", swaggerUI.serve, swaggerUI.setup(specs));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(session(conf.storeConfig));
-//app.use(morgan("dev"));
+app.use(morgan("dev"));
 
 /* ------------------------------------ - ----------------------------------- */
 //! ANTES DE LAS RUTAS

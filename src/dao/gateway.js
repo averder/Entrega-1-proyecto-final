@@ -7,7 +7,7 @@ import TicketMongoDAO from "./mongodb/ticket.dao.js";
 
 export const getDAOFromConfig = () => {
   switch (process.env.DATABASE_ENGINE) {
-    case " ":
+    case "mongo":
       return {
         product: ProductMongoDAO,
         cart: CartMongoDAO,

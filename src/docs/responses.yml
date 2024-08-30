@@ -1,0 +1,163 @@
+components:
+  schemas:
+    # Generic error response schema
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+      required:
+        - error
+        - message
+
+    # Schema for error response when a cart is not found
+    ErrorGetById:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+          example: "Carrito no encontrado"
+      required:
+        - error
+        - message
+
+    # Schema for a single cart
+    Cart:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        products:
+          type: array
+          items:
+            $ref: "#/components/schemas/ProductInCart"
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - userId
+        - products
+
+    # Schema for a single product
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+          format: float
+        stock:
+          type: integer
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - price
+        - stock
+
+    # Schema for product in a cart
+    ProductInCart:
+      type: object
+      properties:
+        productId:
+          type: string
+        quantity:
+          type: integer
+      required:
+        - productId
+        - quantity
+
+    # Schema for a new cart request
+    NewCart:
+      type: object
+      properties:
+        userId:
+          type: string
+        products:
+          type: array
+          items:
+            $ref: "#/components/schemas/ProductInCart"
+      required:
+        - userId
+        - products
+
+    # Schema for updating cart products request
+    UpdateCartProducts:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: "#/components/schemas/ProductInCart"
+      required:
+        - products
+
+    # Schema for adding a product to a cart request
+    AddProductToCart:
+      type: object
+      properties:
+        quantity:
+          type: integer
+      required:
+        - quantity
+
+    # Schema for updating product quantity request
+    UpdateProductQuantity:
+      type: object
+      properties:
+        quantity:
+          type: integer
+      required:
+        - quantity
+
+    # Schema for a new product request
+    NewProduct:
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: number
+          format: float
+        stock:
+          type: integer
+        description:
+          type: string
+      required:
+        - name
+        - price
+        - stock
+
+    # Schema for updating a product request
+    UpdateProduct:
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: number
+          format: float
+        stock:
+          type: integer
+        description:
+          type: string

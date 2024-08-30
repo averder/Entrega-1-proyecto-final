@@ -1,0 +1,329 @@
+paths:
+  # --------------------- Carts Endpoints ---------------------
+  /api/carts:
+    post:
+      tags:
+        - Carts
+      summary: "Crear un nuevo carrito."
+      responses:
+        201:
+          description: "Carrito creado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cart"
+        400:
+          description: "Error en la solicitud"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+    get:
+      tags:
+        - Carts
+      summary: "Obtener todos los carritos"
+      responses:
+        200:
+          description: "Lista de carritos"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cart"
+        404:
+          description: "No se encontraron carritos"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /api/carts/{idCart}:
+    get:
+      tags:
+        - Carts
+      summary: "Obtener un carrito por ID"
+      parameters:
+        - name: idCart
+          in: path
+          required: true
+          description: id referente al carrito
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Detalles del carrito"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cart"
+        404:
+          description: "Carrito no encontrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+    put:
+      tags:
+        - Carts
+      summary: "Actualizar los productos de un carrito"
+      parameters:
+        - name: idCart
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateCartProducts"
+        required: true
+      responses:
+        200:
+          description: "Carrito actualizado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cart"
+        404:
+          description: "Carrito no encontrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        400:
+          description: "Error en la solicitud"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+    delete:
+      tags:
+        - Carts
+      summary: "Eliminar todos los productos de un carrito"
+      parameters:
+        - name: idCart
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Carrito vaciado"
+        404:
+          description: "Carrito no encontrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /api/carts/product/{idProd}:
+    post:
+      tags:
+        - Carts
+      summary: "Agregar un producto al carrito"
+      parameters:
+        - name: idProd
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Producto agregado al carrito"
+        400:
+          description: "Error en la solicitud"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        404:
+          description: "Producto o carrito no encontrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /api/carts/{idCart}/product/{idProd}:
+    delete:
+      tags:
+        - Carts
+      summary: "Eliminar un producto del carrito"
+      parameters:
+        - name: idCart
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: idProd
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Producto eliminado del carrito"
+        404:
+          description: "Producto o carrito no encontrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+    put:
+      tags:
+        - Carts
+      summary: "Actualizar la cantidad de un producto en el carrito"
+      parameters:
+        - name: idCart
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: idProd
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateProductQuantity"
+        required: true
+      responses:
+        200:
+          description: "Cantidad del producto actualizada"
+        404:
+          description: "Producto o carrito no encontrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  # --------------------- Products Endpoints ---------------------
+  /api/products:
+    get:
+      tags:
+        - Products
+      summary: "Obtener todos los productos"
+      responses:
+        200:
+          description: "Lista de productos"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        404:
+          description: "No se encontraron productos"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+    post:
+      tags:
+        - Products
+      summary: "Crear un nuevo producto"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewProduct"
+        required: true
+      responses:
+        201:
+          description: "Producto creado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        400:
+          description: "Error en la solicitud"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /api/products/{pId}:
+    get:
+      tags:
+        - Products
+      summary: "Obtener un producto por ID"
+      parameters:
+        - name: pId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Detalles del producto"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        404:
+          description: "Producto no encontrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+    put:
+      tags:
+        - Products
+      summary: "Actualizar un producto"
+      parameters:
+        - name: pId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateProduct"
+        required: true
+      responses:
+        200:
+          description: "Producto actualizado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        404:
+          description: "Producto no encontrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        400:
+          description: "Error en la solicitud"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+    delete:
+      tags:
+        - Products
+      summary: "Eliminar un producto"
+      parameters:
+        - name: pId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: "Producto eliminado"
+        404:
+          description: "Producto no encontrado"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"

@@ -1,0 +1,140 @@
+components:
+  securitySchemes:
+    cookieAuth: # arbitrary name for the security scheme; will be used in the "security" key later
+      type: apiKey
+      in: cookie
+      name: connect.sid # cookie name
+  schemas:
+    # Schema for creating a new cart
+    NewCart:
+      type: object
+      properties:
+        userId:
+          type: string
+          example: "user123"
+        products:
+          type: array
+          items:
+            $ref: "#/components/schemas/ProductInCart"
+      required:
+        - userId
+        - products
+
+    # Schema for updating the products in a cart
+    UpdateCartProducts:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: "#/components/schemas/ProductInCart"
+      required:
+        - products
+
+    # Schema for adding a product to a cart
+    AddProductToCart:
+      type: object
+      properties:
+        quantity:
+          type: integer
+          example: 3
+      required:
+        - quantity
+
+    # Schema for updating product quantity in a cart
+    UpdateProductQuantity:
+      type: object
+      properties:
+        quantity:
+          type: integer
+          example: 5
+      required:
+        - quantity
+
+    # Schema for creating a new product
+    NewProduct:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "Probien"
+        description:
+          type: string
+          example: "Esta es una descripción de ejemplo para el producto."
+        code:
+          type: string
+          example: "AB7453334"
+        price:
+          type: number
+          format: float
+          example: 99.99
+        status:
+          type: boolean
+          example: true
+        stock:
+          type: integer
+          example: 50
+        category:
+          type: string
+          example: "Electrónica"
+        thumbnails:
+          type: array
+          items:
+            type: string
+            example: "/ruta/imagen1.jpg"
+      required:
+        - title
+        - price
+        - stock
+        - category
+
+    # Schema for updating an existing product
+    UpdateProduct:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "Producto Ejemplo"
+        description:
+          type: string
+          example: "Esta es una descripción de ejemplo para el producto."
+        code:
+          type: string
+          example: "ABC123"
+        price:
+          type: number
+          format: float
+          example: 99.99
+        status:
+          type: boolean
+          example: true
+        stock:
+          type: integer
+          example: 50
+        category:
+          type: string
+          example: "Electrónica"
+        thumbnails:
+          type: array
+          items:
+            type: string
+            example: "/ruta/imagen1.jpg"
+      required:
+        - title
+        - price
+        - stock
+        - category
+
+    # Schema for a product in the cart
+    ProductInCart:
+      type: object
+      properties:
+        productId:
+          type: string
+          example: "product123"
+        quantity:
+          type: integer
+          example: 2
+      required:
+        - productId
+        - quantity
