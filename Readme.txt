@@ -1,0 +1,2 @@
+Dejo el export de los endpoint para probarlos usando postman, el archivo se llama "Entrega1-proyecto-final.postman_collection" y contiene todo lo necesario para hacer mis pruebas. Se pueden importar para hacer las pruebas correspondientes, ya que no llego con entregarlo con swagger. El ultimo commit muestra mis cambios de lo pedido en el proyecto final.
+Para hacer login o registrarme usar los endpoints login-passport o register-passport. 

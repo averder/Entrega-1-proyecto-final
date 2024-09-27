@@ -1,0 +1,650 @@
+{
+	"info": {
+		"_postman_id": "5b5a7867-1fed-4f03-8736-3362eaf8aedd",
+		"name": "Entrega1-proyecto-final",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34559314"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Producto EjemploNUEVITO\",\r\n  \"description\": \"Esta es una descripción de ejemplo para el producto.\",\r\n  \"code\": \"ABC123\",\r\n  \"price\": 99.99,\r\n  \"status\": true,\r\n  \"stock\": 50,\r\n  \"category\": \"Electrónica\",\r\n  \"thumbnails\": [\r\n    \"/ruta/imagen1.jpg\",\r\n    \"/ruta/imagen2.jpg\",\r\n    \"/ruta/imagen3.jpg\"\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/product?",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Producto Ejemplo\",\r\n  \"description\": \"Esta es una descripción de ejemplo para el producto.\",\r\n  \"code\": \"ABC123\",\r\n  \"price\": 99.99,\r\n  \"status\": true,\r\n  \"stock\": 50,\r\n  \"category\": \"Electrónica\",\r\n  \"thumbnails\": [\r\n    \"/ruta/imagen1.jpg\",\r\n    \"/ruta/imagen2.jpg\",\r\n    \"/ruta/imagen3.jpg\"\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/product?",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Producto Ejemplo\",\r\n  \"description\": \"Esta es una descripción de ejemplo para el producto.\",\r\n  \"code\": \"ABC123\",\r\n  \"price\": 99.99,\r\n  \"status\": true,\r\n  \"stock\": 50,\r\n  \"category\": \"Electrónica\",\r\n  \"thumbnails\": [\r\n    \"/ruta/imagen1.jpg\",\r\n    \"/ruta/imagen2.jpg\",\r\n    \"/ruta/imagen3.jpg\"\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/product/baad3062-bdb9-4e5b-8a17-3ac3028c3a56",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"product",
+								"baad3062-bdb9-4e5b-8a17-3ac3028c3a56"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/products/baad3062-bdb9-4e5b-8a17-3ac3028c3a56",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								"baad3062-bdb9-4e5b-8a17-3ac3028c3a56"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/carts",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add product to Card",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/carts/665fa2f77461650491edece5",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"carts",
+								"665fa2f77461650491edece5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Quantity",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/carts/116c54aa-985c-4b80-881b-cd77f54bd6de/product/7ad311c1-4443-4da3-9887-62991ded2a2d",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"carts",
+								"116c54aa-985c-4b80-881b-cd77f54bd6de",
+								"product",
+								"7ad311c1-4443-4da3-9887-62991ded2a2d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"products\": [\r\n    {\r\n      \"productId\": \"665fa30e7461650491edece9\",\r\n      \"quantity\": 4\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/carts/116c54aa-985c-4b80-881b-cd77f54bd6de",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"carts",
+								"116c54aa-985c-4b80-881b-cd77f54bd6de"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove product to Card",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/carts/116c54aa-985c-4b80-881b-cd77f54bd6de/product/7ad311c1-4443-4da3-9887-62991ded2a2d",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"carts",
+								"116c54aa-985c-4b80-881b-cd77f54bd6de",
+								"product",
+								"7ad311c1-4443-4da3-9887-62991ded2a2d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/carts/{{cid}}a",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"carts",
+								"{{cid}}a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear Cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/carts/665f9ce8fe44dab4a490ecf6",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"carts",
+								"665f9ce8fe44dab4a490ecf6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"\",\n\t\"password\": \"\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Passport Local",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"verde@gmail.com\",\n\t\"password\": \"1234\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/users/login-passport",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"login-passport"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Passport Local",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"first_name\": \"Verde\",\n  \"last_name\": \"Da\",\n  \"email\": \"verde@gmail.com\",\n  \"age\": 29,\n  \"password\": \"1234\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/users/register-passport",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"register-passport"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Info Session",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/users/info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Current",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/users/current",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/users/current",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/users/current",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Visit Secret Endpoint",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/users/secret-endpoint",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"secret-endpoint"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/users/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"first_name\": \"Agustin\",\n  \"last_name\": \"Da\",\n  \"email\": \"admin@gmail.com\",\n  \"age\": 29,\n  \"password\": \"admin1234\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Premium User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/users/premium/66f5a30c1891a403d258ce19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"premium",
+								"66f5a30c1891a403d258ce19"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ticket",
+			"item": [
+				{
+					"name": "Generate Ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"first_name\": \"Verde\",\n  \"last_name\": \"Da\",\n  \"email\": \"verde@gmail.com\",\n  \"age\": 29,\n  \"password\": \"1234\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/users/register-passport",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"register-passport"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Email",
+			"item": [
+				{
+					"name": "Send Email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"dest\": \"verdera.agustin@gmail.com\",\n  \"name\": \"Verde\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/email/send",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"email",
+								"send"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
