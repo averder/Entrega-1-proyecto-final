@@ -35,6 +35,17 @@ const UserSchema = new Schema({
     ref: "carts",
     default: null,
   },
+  last_connection: {
+    type: Date,
+  },
+  active: {
+    type: Boolean,
+    default: true,
+  },
+  isPremium: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 export const UserModel = model("users", UserSchema);

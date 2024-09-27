@@ -4,6 +4,7 @@ import UserController from "../controllers/user.controller.js";
 import { validateLogin } from "../middleware/validateLogin.js";
 import passport from "passport";
 import { isAuth } from "../middleware/isAuth.js";
+import { checkAdmin } from "../middleware/checkAdmin.js";
 
 router.post(
   "/login-passport",
@@ -41,5 +42,15 @@ router.get("/private", isAuth, (req, res) => res.json({ msg: "Ruta PRIVADA" }));
 router.get("/current", UserController.current);
 
 router.post("/logout", UserController.logout);
+
+router.put(
+  "/premium/:uid",
+  [isAuth, checkAdmin],
+  UserController.updatePremiumUser
+);
+
+router.delete("/delete", isAuth, UserController.checkUsersLastConnection);
+
+router.get("/get", isAuth, UserController.getAllUsers);
 
 export default router;

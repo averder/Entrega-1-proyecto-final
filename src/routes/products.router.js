@@ -17,6 +17,8 @@ router.post(
 
 router.put("/:pId", [isAuth, checkAdmin], ProductController.updateProduct);
 
+router.post("/products", [isAuth, checkAdmin], ProductController.createProduct);
+
 router.delete(
   "/:idProduct",
   [isAuth, checkAdmin],

@@ -52,6 +52,21 @@ export default class UserController extends Controllers {
     }
   };
 
+  static updatePremiumUser = async (req, res) => {
+    try {
+      const { uid } = req.params;
+      let user = await userService.getUserById(uid);
+      if (user && !user.isPremium) {
+        await userService.updatePremiumUser(uid);
+      }
+      res.json({
+        msg: `User was updated`,
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+
   static visit = (req, res) => {
     req.session.info && req.session.info.contador++;
     res.json({
@@ -91,12 +106,15 @@ export default class UserController extends Controllers {
         id = req.session.passport.user;
       const user = await userService.getUserById(id);
       if (!user) res.status(401).json({ msg: "Error de autenticacion" });
-      const { first_name, last_name, email, age, role, cart } = user;
+      await userService.updateLastConnection(id);
+      const { first_name, last_name, email, age, role, cart, last_connection } =
+        user;
       req.session.profile = {
         email,
         name: `${user.first_name} ${user.last_name}`,
         role: user.role,
         cart: user.cart,
+        last_connection: user.last_connection,
       };
       req.user = user.id;
       req.session.info = {
@@ -113,6 +131,7 @@ export default class UserController extends Controllers {
           age,
           role,
           cart,
+          last_connection,
         },
       });
     } catch (error) {
@@ -148,6 +167,24 @@ export default class UserController extends Controllers {
       res.json({
         user: user,
       });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  static checkUsersLastConnection = async (req, res, next) => {
+    try {
+      const users = await userService.checkUsersLastConnection();
+      return response(res, HttpStatus.OK, users);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  static getAllUsers = async (req, res, next) => {
+    try {
+      const users = await userService.getAllUsers();
+      return response(res, HttpStatus.OK, users);
     } catch (error) {
       next(error);
     }

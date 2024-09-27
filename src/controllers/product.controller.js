@@ -3,16 +3,18 @@ import { response } from "../helpers.js";
 import { Errors } from "../errors.js";
 import ProductService from "../services/product.service.js";
 import { config } from "../config.js";
+import Controllers from "./class.controller.js";
 
-export default class ProductController {
+const productService = new ProductService();
+export default class ProductController extends Controllers {
   constructor() {
-    this.productService = new ProductService();
+    super(productService);
   }
 
   static getById = async (req, res) => {
     try {
       const { pId } = req.params;
-      const product = await this.productService.getById(pId);
+      const product = await productService.getById(pId);
       if (!product)
         response(res, HttpStatus.NOT_FOUND, Errors.notFound("Product"));
       else response(res, HttpStatus.OK, { product });
@@ -25,7 +27,7 @@ export default class ProductController {
     try {
       const { page, limit, query, sort, available } = req.query;
       console.log(sort);
-      const resp = await this.productService.getAllProducts(
+      const resp = await productService.getAllProducts(
         page,
         limit,
         query,
@@ -64,7 +66,7 @@ export default class ProductController {
 
   static createProduct = async (req, res) => {
     try {
-      const product = await this.productService.createProduct(req.body);
+      const product = await productService.createProduct(req.body);
       response(res, HttpStatus.CREATED, { product }, false);
     } catch (error) {
       response(res, HttpStatus.INTERNAL_SERVER_ERROR, error.message);
@@ -74,7 +76,7 @@ export default class ProductController {
   static updateProduct = async (req, res) => {
     try {
       const { pId } = req.params;
-      const productUpd = await this.productService.updateProduct(pId, req.body);
+      const productUpd = await productService.updateProduct(pId, req.body);
 
       if (!productUpd) {
         response(res, HttpStatus.NOT_FOUND, { msg: "Error updating product" });
@@ -89,7 +91,7 @@ export default class ProductController {
   static deleteProduct = async (req, res) => {
     try {
       const { idProduct } = req.params;
-      const wasDeleted = await this.productService.deleteProduct(idProduct);
+      const wasDeleted = await productService.deleteProduct(idProduct);
       if (!wasDeleted) {
         response(res, HttpStatus.NOT_FOUND, "Error delete product");
       } else {

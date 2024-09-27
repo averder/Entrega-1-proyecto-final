@@ -53,4 +53,33 @@ export default class UserRepository {
       throw new Error(error);
     }
   }
+
+  async userUpdate(id, object) {
+    try {
+      return await this.userDao.update(id, object);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async getAll() {
+    try {
+      return await this.userDao.getAll();
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async getAllUsers() {
+    try {
+      const users = await this.userDao.getAll();
+      let usersDTO = [];
+      users.forEach((u) => {
+        usersDTO.push(new UserDTO(u));
+      });
+      return usersDTO;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }

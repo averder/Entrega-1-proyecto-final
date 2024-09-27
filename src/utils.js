@@ -22,3 +22,19 @@ export const createHash = (password) =>
  */
 export const isValidPassword = (password, user) =>
   bcryptjs.compareSync(password, user.password);
+
+/* ------------------------------------ - ----------------------------------- */
+/**
+ * Recibe la fecha de la última conexión y retorna true si han pasado mas de X
+ * tiempo desde esa fecha o false si no ha pasado ese tiempo
+ * @param {*} lastConnectionDate Date
+ * @returns boolean
+ */
+export const hasBeenMoreThanXTime = (lastConnectionDate) => {
+  const dateNow = new Date();
+  const diffMs = dateNow - lastConnectionDate;
+  const hours48Ms = 48 * 60 * 60 * 1000; //48hs en ms
+  const minMs = 60 * 1000; //1 minuto
+
+  return diffMs > hours48Ms; //diferencia es mayor a 48hs en ms
+};

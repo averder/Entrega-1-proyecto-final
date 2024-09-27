@@ -28,8 +28,8 @@ const signUp = async (req, email, password, done) => {
 
 const login = async (req, email, password, done) => {
   try {
-    const userLogin = await userService.login({ email, password });
-    if (!userLogin) {
+    const userLogin = await userService.login({ email, password, req });
+    if (!userLogin || !userLogin.active) {
       req.session.destroy();
       return done(null, false, { message: "Error Autentication ⛔" });
     }

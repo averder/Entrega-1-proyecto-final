@@ -35,9 +35,27 @@ const getByEmail = async (email) => {
   }
 };
 
+const update = async (id, obj) => {
+  try {
+    return await UserModel.findByIdAndUpdate(id, obj, { new: true });
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const getAll = async () => {
+  try {
+    return await UserModel.find({});
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 export const UserMongoDAO = {
   register,
   login,
   getByEmail,
   getById,
+  update,
+  getAll,
 };
